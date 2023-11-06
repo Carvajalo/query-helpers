@@ -1,4 +1,4 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import executeHTTPRequest from "../utils/excuteAPIRequest";
 
 const useQueryHelper = ({
@@ -9,9 +9,8 @@ const useQueryHelper = ({
   token = null,
   pageParam = null,
   resourceIdentifier = null
-}, { queryKey = ["users"], enabled = Boolean(endpoint), refetchOnWindowFocus = false, mutations, invalidateQueries = false }) => {
+}, { queryKey = ["users"], enabled = Boolean(endpoint), refetchOnWindowFocus = false, mutations }) => {
 
-  const queryClient = useQueryClient();
   const newMutation = executeHTTPRequest
 
   const query = useQuery({
@@ -44,7 +43,6 @@ const useQueryHelper = ({
   const mutation = useMutation({
     mutationFn: handleMutation,
     onSuccess: (data) => {
-      if (invalidateQueries) queryClient.invalidateQueries(queryKey);
       return data;
     },
     onError: (e) => {
@@ -56,7 +54,6 @@ const useQueryHelper = ({
   return {
     query,
     mutation,
-    queryClient,
   }
 
 }
