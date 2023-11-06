@@ -11,6 +11,10 @@
     "release:major": "npm version major && npm run release",
     "build": "SET NODE_ENV=production && (if EXIST dist (rmdir /s /q dist)) && mkdir dist && npx babel --config-file ./babel.config.js src/ --out-dir dist --copy-files --ignore src/**/*.spec.js --no-copy-ignored"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Carvajalo/query-helpers"
+  },
   "keywords": [
     "custom_hooks",
     "hooks",
@@ -21,6 +25,9 @@
   ],
   "author": "Carvajalo",
   "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@babel/cli": "^7.20.7",
     "@babel/core": "^7.20.12",
