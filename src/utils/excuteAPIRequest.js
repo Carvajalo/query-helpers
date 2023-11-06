@@ -42,6 +42,7 @@ export const useQueryHelper = ({
   token = null,
   pageParam = null,
   resourceIdentifier = null,
+  ...rest
 }) => {
   const headers = {
     ...(token && { Authorization: `Bearer ${token}` }),
@@ -54,6 +55,7 @@ export const useQueryHelper = ({
     method,
     headers,
     ...(method !== "GET" && body && { data: body }),
+    ...rest
   }
 
   /**
